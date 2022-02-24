@@ -42,3 +42,28 @@ public class CssXpathExamples {
         $(withText("lo qa.gu"));
     }
 }
+public class TextBoxTest {
+    void beforeAll() {
+        @BeforeAll
+        static void beforeAll() {
+            Configuration.baseUrl = "https://demoqa.com";
+            Configuration.browserSize = "1920x1080";
+        }
+        @Test
+        void successFillTest() {
+            open("/text-box");
+            $(".main-header").shouldHave(text("Text Box"));
+            $("#userName").setValue("Alex");
+            $("#userEmail").setValue("alex@company.com");
+            $("#currentAddress").setValue("Some address 1");
+            $("#permanentAddress").setValue("Other address 2");
+            $("#submit").click();
+            $("#output").shouldHave(text("Alex"), text("alex@company.com"),
+                    text("Some address 1"), text("Other address 2"));
+            $("#name").shouldHave(text("Alex"));
+            $("#currentAddress").shouldHave(text("Some address 1")); // wrong
+            $("#currentAddress", 1).shouldHave(text("Some address 1"));
+            $("#output").$("#currentAddress").shouldHave(text("Some address 1"));
+            $("#output #currentAddress").shouldHave(text("Some address 1"));
+        }
+    }
