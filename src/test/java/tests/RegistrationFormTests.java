@@ -13,7 +13,8 @@ public class RegistrationFormTests {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "1980x1024";
+        Configuration.browser = "firefox";
     }
 
     @Test
